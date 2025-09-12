@@ -1,82 +1,52 @@
-# Lightweight React Template for KAVIA
+# KAVIA Q&A Chatbot Frontend (React)
 
-This project provides a minimal React template with a clean, modern UI and minimal dependencies.
+A lightweight React UI for a simple Q&A chatbot, connecting to a Django REST backend.
 
 ## Features
+- Modern chat layout with sidebar sessions, message bubbles, typing indicator
+- Session management (create, select, delete), persisted active session
+- Connects to backend REST API for health, sessions, messages, and chat
+- Light/Dark theme toggle with persistence
+- Loading and error states with optimistic UI for sending messages
 
-- **Lightweight**: No heavy UI frameworks - uses only vanilla CSS and React
-- **Modern UI**: Clean, responsive design with KAVIA brand styling
-- **Fast**: Minimal dependencies for quick loading times
-- **Simple**: Easy to understand and modify
+## Quick Start
 
-## Getting Started
+Install dependencies:
+- npm install
 
-In the project directory, you can run:
+Run with development proxy (expects backend on localhost:8000):
+- npm start
 
-### `npm start`
+Alternatively, explicitly specify backend URL:
+- npm run start:backend
 
-Runs the app in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Build for production:
+- npm run build
+or
+- npm run build:backend
 
-### `npm test`
+## Backend URL Configuration
 
-Launches the test runner in interactive watch mode.
+This app discovers the backend API base URL in the following order:
+1. window.ENV.REACT_APP_BACKEND_URL (runtime-injected)
+2. process.env.REACT_APP_BACKEND_URL (build-time)
+3. Defaults to /api (use a reverse proxy or CRA proxy)
 
-### `npm run build`
+Development proxy is set to http://localhost:8000, so API calls like /api/chat/ will be proxied to the backend during npm start.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To point to a custom backend:
+- Use environment variable at start:
+  REACT_APP_BACKEND_URL="https://your-backend.example.com/api" npm start
+- Or inject at runtime by defining window.ENV in index.html before bundle:
+  <script>window.ENV = { REACT_APP_BACKEND_URL: "https://your-backend.example.com/api" };</script>
 
-## Customization
+## Scripts
+- npm start: Start dev server with CRA proxy
+- npm run start:backend: Start dev server pointing to http://localhost:8000/api
+- npm test: Run tests
+- npm run build: Create production build
+- npm run build:backend: Create build using /api base path
 
-### Colors
-
-The main brand colors are defined as CSS variables in `src/App.css`:
-
-```css
-:root {
-  --kavia-orange: #E87A41;
-  --kavia-dark: #1A1A1A;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
-}
-```
-
-### Components
-
-This template uses pure HTML/CSS components instead of a UI framework. You can find component styles in `src/App.css`. 
-
-Common components include:
-- Buttons (`.btn`, `.btn-large`)
-- Container (`.container`)
-- Navigation (`.navbar`)
-- Typography (`.title`, `.subtitle`, `.description`)
-
-## Learn More
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Notes
+- The UI expects the backend to implement endpoints described by the provided OpenAPI (chat, sessions, messages, health).
+- No binary assets or additional libraries are required.
