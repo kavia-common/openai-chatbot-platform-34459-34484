@@ -14,11 +14,12 @@ A lightweight React UI for a simple Q&A chatbot, connecting to a Django REST bac
 Install dependencies:
 - npm install
 
-Run with development proxy (expects backend on localhost:8000):
+Run with development proxy (expects backend on localhost:3001):
 - npm start
 
-Alternatively, explicitly specify backend URL:
-- npm run start:backend
+Alternatively, explicitly specify backend URL (recommended for preview environments):
+- npm run start:backend   # uses http://localhost:3001/api
+- npm run start:preview   # uses https://vscode-internal-37494-beta.beta01.cloud.kavia.ai:3001/api
 
 Build for production:
 - npm run build

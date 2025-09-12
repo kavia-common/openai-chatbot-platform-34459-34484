@@ -8,8 +8,9 @@
     "react-scripts": "^5.0.1"
   },
   "scripts": {
-    "start": "react-scripts start", 
-    "start:backend": "cross-env REACT_APP_BACKEND_URL=http://localhost:8000/api react-scripts start",
+    "start": "react-scripts start",
+    "start:backend": "cross-env REACT_APP_BACKEND_URL=http://localhost:3001/api react-scripts start",
+    "start:preview": "cross-env REACT_APP_BACKEND_URL=https://vscode-internal-37494-beta.beta01.cloud.kavia.ai:3001/api react-scripts start",
     "build": "react-scripts build",
     "build:backend": "cross-env REACT_APP_BACKEND_URL=/api react-scripts build",
     "test": "react-scripts test",
@@ -30,7 +31,7 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:8000",
+  "proxy": "http://localhost:3001",
   "devDependencies": {
     "cross-env": "^7.0.3"
   }
