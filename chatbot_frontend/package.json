@@ -8,7 +8,7 @@
     "react-scripts": "^5.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts start", 
     "start:backend": "cross-env REACT_APP_BACKEND_URL=http://localhost:8000/api react-scripts start",
     "build": "react-scripts build",
     "build:backend": "cross-env REACT_APP_BACKEND_URL=/api react-scripts build",

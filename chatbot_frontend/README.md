@@ -25,6 +25,25 @@ Build for production:
 or
 - npm run build:backend
 
+## Fixing "Invalid Host header" in development
+
+When accessing the app via IP, a tunnel, or a preview domain, Create React App's dev server may show:
+"Invalid Host header".
+
+To allow your host in development:
+1) Create (already added by default) `.env.development.local` with:
+   HOST=0.0.0.0
+   DANGEROUSLY_DISABLE_HOST_CHECK=true
+
+This binds the dev server to all interfaces and disables the host check only in development.
+Do NOT use this in production.
+
+If you prefer a stricter setup, set HOST to your known domain:
+   HOST=your-preview-domain.example.com
+
+You can also set PUBLIC_URL in development if your preview requires a specific base path:
+   PUBLIC_URL=/
+
 ## Backend URL Configuration
 
 This app discovers the backend API base URL in the following order:
